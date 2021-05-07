@@ -13,6 +13,7 @@ import { SupplierModule } from './supplier/supplier.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientModule } from './client/client.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ClientModule } from './client/client.module';
     InvoiceModule,
     HttpClientModule,
     ClientModule,
+    AuthModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent]

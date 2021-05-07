@@ -31,6 +31,10 @@ const routes: Routes = [
     {
       path: 'client-register',
       loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
+    },
+    {
+      path: 'login',
+      loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
     }
   ]
 }
