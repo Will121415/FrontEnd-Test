@@ -1,0 +1,107 @@
+<form class="container" [formGroup]="productForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card [class.mat-elevation-z8]="true">
+    <mat-card-header>
+      <mat-card-title>Registrar Producto</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Codigo" formControlName="idProduct">
+            <mat-error *ngIf="controlProduct['idProduct'].hasError('required')">
+              idProduct is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre" formControlName="name">
+            <mat-error *ngIf="controlProduct['name'].hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="number" placeholder="Precio Compra" formControlName="purchasePrice">
+            <mat-error *ngIf="controlProduct['purchasePrice'].hasError('required')">
+              purchasePrice name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="number" placeholder="Precio Venta" formControlName="salePrice">
+            <mat-error *ngIf="controlProduct['salePrice'].hasError('required')">
+              salePrice name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Unidad</mat-label>
+            <mat-select formControlName="unitMeasure">
+              <mat-option *ngFor="let measure of measures" [value]="measure">{{measure}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="controlProduct['unitMeasure'].hasError('required')">
+              UnitMeasure  is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col" [formGroup]="supplierForm">
+          <mat-form-field class="full-width">
+            <mat-label>Proveedor</mat-label>
+            <mat-select (selectionChange)="change($event.value)" formControlName="suppliertxt">
+              <mat-option *ngFor="let supplier of suppliers" [value]="supplier.nit">{{supplier.name}}</mat-option>
+            </mat-select>
+            <mat-error  *ngIf="supplierForm.controls['suppliertxt'].hasError('required')">
+              Supplier  is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="number" placeholder="Cantidad" formControlName="quantityStock">
+            <mat-error *ngIf="controlProduct['quantityStock'].hasError('required')">
+              Quantity  is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="number" placeholder="IVA" formControlName="iva">
+            <mat-error *ngIf="controlProduct['iva'].hasError('required')">
+              IVA is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>Descripcion</mat-label>
+            <textarea matInput placeholder="Digite una descripcion...." formControlName="description"></textarea>
+            <mat-error *ngIf="controlProduct['description'].hasError('required')">
+              Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="enabled">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

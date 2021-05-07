@@ -1,0 +1,82 @@
+<form class="container" [formGroup]="clientForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card [class.mat-elevation-z8]="true">
+    <mat-card-title>
+      Registrar Cliente
+    </mat-card-title>
+    <mat-card-content>
+      <div class="row"></div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Identificacion" formControlName="idClient">
+            <mat-error *ngIf="clientControl['idClient'].hasError('required')">
+              idClient is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre" formControlName="name">
+            <mat-error *ngIf="clientControl['name'].hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Apellido" formControlName="lastName">
+            <mat-error *ngIf="clientControl['lastName'].hasError('required')">
+              LastName is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Telefono" formControlName="phone">
+            <mat-error *ngIf="clientControl['phone'].hasError('required')">
+              Phone is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Direccion" formControlName="address">
+            <mat-error *ngIf="clientControl['address'].hasError('required')">
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Barrio" formControlName="neighborhood">
+            <mat-error *ngIf="clientControl['neighborhood'].hasError('required')">
+              Neighborhood is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Ciudad" formControlName="city">
+            <mat-error *ngIf="clientControl['city'].hasError('required')">
+              City is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="clientForm.invalid">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

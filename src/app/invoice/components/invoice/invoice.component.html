@@ -1,0 +1,162 @@
+<body>
+  <div class="row mt-5 mb-5 font-size">
+      <div class="col-sm-6">
+          <div class="card margin" [class.mat-elevation-z8]="true">
+              <h5 class="card-header colorTop">
+                Datos Factura
+              </h5>
+              <div class="card-body">
+                  <form [formGroup]="formGroupInvoice">
+                      <div class="row d-flex">
+
+                          <div class="form-group col-md-4">
+                              <label>N° Factura</label>
+                              <input type="text" class="form-control" formControlName="idInvoice">
+                          </div>
+                      </div>
+                  </form>
+                  <form [formGroup]="formGroupClient">
+                      <div class="row">
+
+                          <div class="form-group col-md-4">
+                              <label>Identificacion</label>
+                              <input type="text" class="form-control" formControlName="idClient"
+                                  placeholder="Identificacion"
+                                  [ngClass]="{'is-invalid': (controlClient.idClient.errors && controlClient.idClient.touched)}">
+
+                              <div *ngIf="controlClient.idClient.errors" class="invalid-feedback">
+                                  <div *ngIf="controlClient.idClient.errors.required">se requiere la identificacion </div>
+                              </div>
+                          </div>
+                          <div class="form-group col-md-4 mt-3 pt-3">
+                              <button class="btn btn-primary " [disabled]="formGroupClient.invalid"
+                                  (click)="search()">Buscar</button>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="from-group col-md-6">
+                              <label for="inputName">Nombre</label>
+                              <input type="text" class="form-control" formControlName="name">
+                          </div>
+                          <div class="from-group col-md-6">
+                              <label>Apellido(s)</label>
+                              <input type="text" class="form-control" formControlName="lastName">
+                          </div>
+                      </div>
+
+                  </form>
+                  <form>
+                      <div class="row my-3">
+                          <div class="from-group col-md-12">
+                              <a class="navbar-brand text-center">
+                                  <input  class="form-control mx-5" type="search"
+                                      name="searchText" [(ngModel)]="searchText" placeholder="Buscar productos"
+                                      aria-label="Search">
+                              </a>
+                          </div>
+                      </div>
+
+                      <div *ngIf="products !== undefined"  class="table-responsive">
+                          <table class="table">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">ID</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Stock</th>
+                                      <th scope="col">Cant</th>
+                                      <th scope="col">Desc</th>
+                                      <th scope="col">$Venta</th>
+                                      <th scope="col">Add</th>
+                                  </tr>
+                              </thead>
+                              <tbody *ngFor="let product of products">
+                                  <tr>
+                                      <td>{{ product.idProduct }}</td>
+                                      <td>{{ product.name }}</td>
+                                      <td>{{ product.quantityStock }}</td>
+                                      <td>
+                                          <input type="number" #valQuantity id="size-quantity" min="1" [max]="product.quantityStock" >
+                                      </td>
+                                      <td>
+                                          <input type="number" #valDiscount id="size-quantity" min="0" max="100" >
+                                      </td>
+                                      <td>
+                                          <input type="number" #valPrice id="size-price" [value]="product.salePrice" >
+                                      </td>
+                                      <td><button (click)="addDetail(product, valQuantity.value, valPrice.value, valDiscount.value);
+                                          valQuantity.value = ''; valDiscount.value =''"
+                                          class="btn btn-success btn-size"> <mat-icon class="btn-add">add_circle_outline</mat-icon>  </button>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+
+                  </form>
+
+
+
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-6 mb-5">
+          <div class="card" [class.mat-elevation-z8]="true">
+              <h5 class="card-header colorTop">
+                  Detalle Factura
+              </h5>
+
+              <div class="card-body">
+                  <div class="table-responsive">
+                      <div class="form-group col-md-4 mt-3 ml-auto">
+                          <button class="btn btn-primary" (click)="addInvoice()">Guardar</button>
+                      </div>
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th scope="col">Codigo</th>
+                                  <th scope="col">Cant</th>
+                                  <th scope="col">Nombre</th>
+                                  <th scope="col">Precio Unit.</th>
+                                  <th scope="col">Total</th>
+                              </tr>
+                          </thead>
+                          <tbody *ngFor="let detail of invoice.invoiceDetails">
+                              <tr>
+
+                                  <td>{{ detail.product.idProduct }}</td>
+                                  <td>{{ detail.quantityProduct }}</td>
+                                  <td>{{ detail.product.name }}</td>
+                                  <td>{{ detail.unitValue }}</td>
+                                  <td>{{ detail.tolalDetail }}</td>
+                                  <td>
+                                      <button (click)="delete(invoice.invoiceDetails.indexOf(detail))" class="btn btn-danger btn-size">
+                                          <mat-icon class="btn-add">highlight_off</mat-icon>
+                                      </button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                          <tbody>
+                              <tr>
+                                  <td colspan="4"></td>
+                                  <td>SUBTOTAL $</td>
+                                  <td>{{invoice.subtotal }}</td>
+                              </tr>
+                              <tr>
+                                  <td colspan="4"></td>
+                                  <td>IVA $</td>
+                                  <td>{{ invoice.totalIva}}</td>
+                              </tr>
+                              <tr>
+                                  <td colspan="4"></td>
+                                  <td><strong>TOTAL $</strong></td>
+                                  <td><strong>{{ invoice.total }}</strong></td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>

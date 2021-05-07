@@ -1,0 +1,32 @@
+.colorTop{
+  background-color: #000000;
+  color: #ffffff;
+}
+h5 {
+  color: #ffffff;
+  font-size: 15px;
+}
+#size-quantity
+{
+  width: 50px;
+}
+#size-price{
+
+  width: 70px;
+}
+.margin {
+  margin-bottom: 100px;
+}
+.btn-add {
+font-size: 27px;
+margin-top: -7px;
+margin-left: -3px;
+}
+
+.btn-size {
+  height: 30px;
+}
+
+.font-size {
+  font-size: 14px;
+}
