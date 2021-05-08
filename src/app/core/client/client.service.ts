@@ -28,4 +28,10 @@ export class ClientService {
     catchError(this.handleErrorService.handleError<Client>('Error al consultar el cliente', new Client()))
     );
   }
+
+  get(): Observable<Client[]> {
+    return this.http.get<Client[]>(this.baseUrl + 'api/Client')
+    .pipe(tap(_ => this.handleErrorService.log('Clientes consultados')),
+    catchError(this.handleErrorService.handleError<Client[]>('Error al consultar los clientes', null))
+    ); }
 }

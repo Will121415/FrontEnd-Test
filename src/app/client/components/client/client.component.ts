@@ -47,6 +47,8 @@ export class ClientComponent implements OnInit {
           alert("Cliente Guardado...!");
           console.log(c);
           this.clientForm.reset();
+        }else {
+          alert("Error al guardar el cliente");
         }
     });
 

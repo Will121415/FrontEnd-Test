@@ -14,6 +14,8 @@ import { InvoiceModule } from './invoice/invoice.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientModule } from './client/client.module';
 import { AuthModule } from './auth/auth.module';
+import { ProductConsultModule } from './product-consult/product-consult.module';
+import { ClientConsultModule } from './client-consult/client-consult.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
     ClientModule,
     AuthModule,
+    ProductConsultModule,
+    ClientConsultModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent]

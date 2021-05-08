@@ -7,9 +7,20 @@
         </span>
 
         <span *ngIf="(user$ | async ) as user">
-          <a *ngIf="user.role == 'AvaluoLeader'" mat-button [routerLink]="['/product-register']" routerLinkActive="active">Productos</a>
+
+          <a  *ngIf="user.role == 'AvaluoLeader'" mat-button  class="act" [matMenuTriggerFor]="product">Productos </a>
+          <mat-menu #product="matMenu">
+            <a class="text-menu" mat-menu-item [routerLink]="['/product-register']">registrar poductos</a>
+            <a class="text-menu" mat-menu-item [routerLink]="['/product-consult']">consultar productos</a>
+          </mat-menu>
+
+          <a  *ngIf="user.role == 'AvaluoLeader'" mat-button  class="act" [matMenuTriggerFor]="client">Clientes</a>
+          <mat-menu #client="matMenu">
+            <a class="text-menu" mat-menu-item [routerLink]="['/client-register']">registrar clientes</a>
+            <a class="text-menu" mat-menu-item [routerLink]="['/client-consult']">consultar clientes</a>
+          </mat-menu>
+
           <a *ngIf="user.role == 'AvaluoLeader'" mat-button [routerLink]="['/supplier-register']" routerLinkActive="active">Proveedores</a>
-          <a *ngIf="user.role == 'AvaluoLeader'" mat-button [routerLink]="['/client-register']" routerLinkActive="active">Clientes</a>
           <a *ngIf="user.role== 'SalesPrfsnal'" mat-button [routerLink]="['/invoice']" routerLinkActive="active">Facturar</a>
         </span>
 

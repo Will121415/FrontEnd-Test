@@ -42,9 +42,14 @@ export class SupplierRegisterComponent implements OnInit {
     console.log(this.supplier);
     if (this.supplierForm.invalid) {return;};
     this.supplierService.post(this.supplier).subscribe(c => {
-      this.supplierForm.reset();
-      alert("Proveedor Guardado...!\n" + this.supplier.name+"\n" +
-     this.supplier.nit +"\n"+ this.supplier.phone );
+
+      if(c != null )
+      {
+        this.supplierForm.reset();
+       alert("Proveedor Guardado...!");
+      }else {
+        alert("Error al guardar el proveedor");
+      }
     });
 
 

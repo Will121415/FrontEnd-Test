@@ -18,18 +18,18 @@ export class ProductRegisterComponent implements OnInit{
   product: Product;
   suppliers: Supplier[];
   supplier: Supplier;
+  _supplier: string;
 
   constructor(
     private fb: FormBuilder,
     private supplierService: SupplierService,
     private productService: ProductService
-    ) {}
+    ) {this.buldForm();}
 
   measures: string[]= ['Kg'];
 
   ngOnInit(): void {
     this.getSuppliers();
-    this.buldForm();
   }
 
   change(value) {
@@ -47,8 +47,10 @@ export class ProductRegisterComponent implements OnInit{
       if (p != null)
       {
         alert("Producto guardado...!");
-        this.productForm.reset();
-        this.supplierForm.reset();
+        this.buldForm();
+      }else {
+        alert("Error al guardar el producto..!");
+
       }
     });
   }
@@ -84,8 +86,10 @@ export class ProductRegisterComponent implements OnInit{
       description: [this.product.description, Validators.required],
     });
 
+
+    this._supplier = '';
     this.supplierForm = this.fb.group({
-      suppliertxt: [null, Validators.required]
+      suppliertxt: [this._supplier, Validators.required]
     });
 
 

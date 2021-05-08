@@ -33,8 +33,16 @@ const routes: Routes = [
       loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
     },
     {
+      path: 'client-consult',
+      loadChildren: () => import('./client-consult/client-consult.module').then(m => m.ClientConsultModule)
+    },
+    {
       path: 'login',
       loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    },
+    {
+      path: 'product-consult',
+      loadChildren: () => import('./product-consult/product-consult.module').then(m => m.ProductConsultModule)
     }
   ]
 }
