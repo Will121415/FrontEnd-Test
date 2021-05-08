@@ -5,6 +5,9 @@
         <span>
           <a mat-button [routerLink]="['/home']" routerLinkActive="active">Home</a>
         </span>
+        <span *ngIf="(user$ | async ) == null">
+          <a mat-button [routerLink]="['/product-consult']" routerLinkActive="active">Productos</a>
+        </span>
 
         <span *ngIf="(user$ | async ) as user">
 
