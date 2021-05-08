@@ -22,8 +22,14 @@ export class InvoiceService {
     );
   }
 
+  get(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.baseUrl + 'api/Invoice')
+    .pipe(tap(_ => this.handleErrorService.log('Facturas Consultadas..!')),
+    catchError(this.handleErrorService.handleError<Invoice[]>('Error al consultar las facturas', null))
+    ); }
+
   getCount(): Observable<number> {
-    return this.http.get<number>(this.baseUrl + 'api/Invoice')
+    return this.http.get<number>(this.baseUrl + 'api/CountInvoice')
     .pipe(tap(_ => this.handleErrorService.log('Facturas Contadas..!')),
     catchError(this.handleErrorService.handleError<number>('Error al contar las facturas', 0))
     ); }

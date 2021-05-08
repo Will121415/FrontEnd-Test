@@ -22,6 +22,9 @@
 
           <a *ngIf="user.role == 'AvaluoLeader'" mat-button [routerLink]="['/supplier-register']" routerLinkActive="active">Proveedores</a>
           <a *ngIf="user.role== 'SalesPrfsnal'" mat-button [routerLink]="['/invoice']" routerLinkActive="active">Facturar</a>
+          <a *ngIf="user.role== 'SalesPrfsnal'" mat-button [routerLink]="['/sales']" routerLinkActive="active">Ventas</a>
+
+
         </span>
 
 

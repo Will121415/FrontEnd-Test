@@ -16,6 +16,7 @@ import { ClientModule } from './client/client.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductConsultModule } from './product-consult/product-consult.module';
 import { ClientConsultModule } from './client-consult/client-consult.module';
+import { SalesModule } from './sales/sales.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ClientConsultModule } from './client-consult/client-consult.module';
     AuthModule,
     ProductConsultModule,
     ClientConsultModule,
+    SalesModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent]
