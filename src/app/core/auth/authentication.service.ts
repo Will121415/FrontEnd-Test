@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  baseUrl: string;
+  baseUrl: string ='https://localhost:5001/';
 
   constructor(
     private http: HttpClient,

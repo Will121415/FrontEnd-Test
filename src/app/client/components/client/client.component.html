@@ -10,7 +10,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Identificacion" formControlName="idClient">
-            <mat-error *ngIf="clientControl['idClient'].hasError('required')">
+            <mat-error *ngIf="clientControl['idClient'].hasError('required') && clientControl['idClient'].touched">
               idClient is <strong>required</strong>
             </mat-error>
           </mat-form-field>

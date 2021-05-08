@@ -1,1 +1,27 @@
-<p>login works!</p>
+<form class="form-signin mt-5 mb-5" [formGroup]="formGroup">
+  <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+  </svg>
+  <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
+  <div class="row">
+    <input type="text" class="form-control" placeholder="Usuario" formControlName="userName"
+    [ngClass]="{'is-invalid': (control.userName.errors && control.userName.touched)}">
+
+    <div *ngIf="control.userName.errors" class="invalid-feedback">
+      <div *ngIf="control.userName.errors.required">se requiere el usuario</div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <input type="password" class="form-control" placeholder="Password" formControlName="password"
+    [ngClass]="{'is-invalid': (control.password.errors && control.password.touched)}">
+
+    <div *ngIf="control.password.errors" class="invalid-feedback">
+      <div *ngIf="control.password.errors.required">se requiere la contraseña</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <button class="btn btn-outline-dark btn-block" type="submit" (click)="onLogin()">Sign in</button>
+  </div>
+</form>

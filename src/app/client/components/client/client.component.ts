@@ -26,13 +26,13 @@ export class ClientComponent implements OnInit {
     this.client = new Client();
 
     this.clientForm = this.fb.group({
-      idClient: [this.client.idClient, Validators.required],
-      name: [this.client.name, Validators.required],
-      lastName: [this.client.lastName, Validators.required],
-      phone: [this.client.phone, Validators.required],
-      address: [this.client.address, Validators.required],
-      neighborhood: [this.client.neighborhood, Validators.required],
-      city: [this.client.city, Validators.required]
+      idClient: [null, Validators.required],
+      name: [null, Validators.required],
+      lastName: [null, Validators.required],
+      phone: [null, Validators.required],
+      address: [null, Validators.required],
+      neighborhood: [null, Validators.required],
+      city: [null, Validators.required]
     });
 
   }

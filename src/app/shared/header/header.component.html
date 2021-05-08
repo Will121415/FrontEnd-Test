@@ -2,16 +2,33 @@
   <mat-toolbar-row>
     <div class="row between-xs middle-xs header-row">
       <nav>
-        <a class="space" mat-button [routerLink]="['/home']" routerLinkActive="active">Home</a>
-        <a mat-button [routerLink]="['/product-register']" routerLinkActive="active">Productos</a>
-        <a mat-button [routerLink]="['/supplier-register']" routerLinkActive="active">Proveedores</a>
-        <a mat-button [routerLink]="['/client-register']" routerLinkActive="active">Clientes</a>
-        <a mat-button [routerLink]="['/invoice']" routerLinkActive="active">Facturar</a>
+        <span>
+          <a mat-button [routerLink]="['/home']" routerLinkActive="active">Home</a>
+        </span>
+
+        <span *ngIf="(user$ | async ) as user">
+          <a *ngIf="user.role == 'AvaluoLeader'" mat-button [routerLink]="['/product-register']" routerLinkActive="active">Productos</a>
+          <a *ngIf="user.role == 'AvaluoLeader'" mat-button [routerLink]="['/supplier-register']" routerLinkActive="active">Proveedores</a>
+          <a *ngIf="user.role == 'AvaluoLeader'" mat-button [routerLink]="['/client-register']" routerLinkActive="active">Clientes</a>
+          <a *ngIf="user.role== 'SalesPrfsnal'" mat-button [routerLink]="['/invoice']" routerLinkActive="active">Facturar</a>
+        </span>
+
+
       </nav>
-      <a [routerLink]="['/login']" class="text-menu" mat-raised-button>
-        <mat-icon>login</mat-icon>
-        Sign in
-      </a>
+       <samp *ngIf="(user$ | async ) as user; else login">
+        <a (click)="onLogout()" class="text-menu" mat-raised-button>
+          <mat-icon>logout</mat-icon>
+          Sign off
+        </a>
+       </samp>
+
+       <ng-template #login>
+          <a class="text-menu" mat-raised-button [routerLink]="['/login']">
+            <mat-icon>login</mat-icon>
+            Login
+          </a>
+      </ng-template>
+
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

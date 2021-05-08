@@ -19,7 +19,7 @@ import { MaterialModule } from '../material/material.module';
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class SharedModule { }
