@@ -7,8 +7,9 @@ import { Product } from '../models/product_model';
 export class InvoicePipe implements PipeTransform {
 
   transform(products: Product[], searchText: string): any {
-    if (searchText == null) { return products.slice(0, 5); }
-    return products.filter(p => p.idProduct.toLowerCase().indexOf(searchText.toLowerCase()) !== -1).slice(0, 5);
+    if (searchText == null) { return products.slice(0, 5).filter(p => p.status == 'Active'); }
+    return products.filter(p => p.idProduct.toLowerCase().indexOf(searchText.toLowerCase()) !== -1).slice(0, 5)
+                   .filter(p => p.status == 'Active');
 }
 
 
