@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { InvoiceRoutingModule } from './invoice-routing.module';
@@ -18,7 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    // SharedModule
+    SharedModule
 
   ]
 })

@@ -12,7 +12,7 @@ import { Product } from 'src/app/models/product_model';
 export class ProductConsultComponent implements AfterViewInit  {
   displayedColumns: string[] = [
     'idProduct', 'name', 'status', 'quantityStock' , 'unitMeasure',
-    'purchasePrice', 'salePrice', 'supplier', 'suppliernit'
+    'purchasePrice', 'salePrice', 'supplier', 'suppliernit', 'action'
   ];
   products: Product[] = [
     {idProduct: '',name: '',purchasePrice: 0, salePrice: 0,iva: 0, description: '',quantityStock: 0,status: '',unitMeasure: '',supplier: {name:'',nit: '',phone: ''}},
@@ -37,6 +37,18 @@ export class ProductConsultComponent implements AfterViewInit  {
         this.dataSource.paginator = this.paginator;
       }else {
         alert('No se encontraron productos');
+      }
+    });
+  }
+  toDisable(element)
+  {
+    this.productService.changeStatus(element.idProduct).subscribe(p => {
+      if(p != null)
+      {
+        this.getProduct();
+        alert("Cambio de estado exitoso...!");
+      }else {
+        alert("Error al cambiar es estado del producto...!");
       }
     });
   }

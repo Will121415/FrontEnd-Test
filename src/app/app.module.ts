@@ -17,11 +17,12 @@ import { AuthModule } from './auth/auth.module';
 import { ProductConsultModule } from './product-consult/product-consult.module';
 import { ClientConsultModule } from './client-consult/client-consult.module';
 import { SalesModule } from './sales/sales.module';
+import { InvoicePipe } from './pipes/invoice.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
+    LayoutComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -39,7 +40,7 @@ import { SalesModule } from './sales/sales.module';
     ClientConsultModule,
     SalesModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

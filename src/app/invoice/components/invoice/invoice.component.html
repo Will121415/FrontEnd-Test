@@ -69,7 +69,7 @@
                                       <th scope="col">Add</th>
                                   </tr>
                               </thead>
-                              <tbody *ngFor="let product of products">
+                              <tbody *ngFor="let product of products| filterInvoice: searchText">
                                   <tr>
                                       <td>{{ product.idProduct }}</td>
                                       <td>{{ product.name }}</td>
@@ -127,7 +127,7 @@
                                   <td>{{ detail.quantityProduct }}</td>
                                   <td>{{ detail.product.name }}</td>
                                   <td>{{ detail.unitValue }}</td>
-                                  <td>{{ detail.tolalDetail }}</td>
+                                  <td>{{ detail.tolalDetail |currency: 'COP' }}</td>
                                   <td>
                                       <button (click)="delete(invoice.invoiceDetails.indexOf(detail))" class="btn btn-danger btn-size">
                                           <mat-icon class="btn-add">highlight_off</mat-icon>
@@ -139,17 +139,17 @@
                               <tr>
                                   <td colspan="4"></td>
                                   <td>SUBTOTAL $</td>
-                                  <td>{{invoice.subtotal }}</td>
+                                  <td>{{invoice.subtotal |currency: 'COP'}}</td>
                               </tr>
                               <tr>
                                   <td colspan="4"></td>
                                   <td>IVA $</td>
-                                  <td>{{ invoice.totalIva}}</td>
+                                  <td>{{ invoice.totalIva |currency: 'COP'}}</td>
                               </tr>
                               <tr>
                                   <td colspan="4"></td>
                                   <td><strong>TOTAL $</strong></td>
-                                  <td><strong>{{ invoice.total }}</strong></td>
+                                  <td><strong>{{ invoice.total |currency: 'COP' }}</strong></td>
                               </tr>
 
                           </tbody>

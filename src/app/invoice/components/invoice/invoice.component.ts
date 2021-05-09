@@ -22,7 +22,6 @@ export class InvoiceComponent implements OnInit {
   invoiceDetail: InvoiceDetail;
   formGroupClient: FormGroup;
   formGroupInvoice: FormGroup;
-  formGroupDetail: FormGroup;
   searchText: string;
   stock: number;
   invoiceAux: Invoice;
@@ -71,7 +70,7 @@ export class InvoiceComponent implements OnInit {
     });
   }
   PadLeft(value, length) {
-    return (value.toString().length < length) ? this.PadLeft('0' + value, length) : value;
+    return (value.toString().length < length) ? this.PadLeft('0' + value, length) : value; //3 0003
 }
 
   cleanForm() {
@@ -84,9 +83,6 @@ export class InvoiceComponent implements OnInit {
   }
   get controlInvoice() {
     return this.formGroupInvoice.controls;
-  }
-  get controlDetail() {
-    return this.formGroupDetail.controls;
   }
 
   get() {
