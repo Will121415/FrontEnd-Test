@@ -4,6 +4,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import { InvoiceService } from 'src/app/core/invoice/invoice.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { InvoiceDetail } from 'src/app/models/invoice_detail_model';
+import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sales',
@@ -30,7 +32,10 @@ export class SalesComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.getInvoices();
   }
-  constructor(private invoiceService: InvoiceService) {
+  constructor(
+    private invoiceService: InvoiceService,
+    private dialog: MatDialog
+    ) {
   }
 
   getInvoices() {
@@ -42,7 +47,11 @@ export class SalesComponent implements AfterViewInit {
         this.dataSource =  new MatTableDataSource<Invoice>(this.invoices);
         this.dataSource.paginator = this.paginator;
       }else {
-        alert('No se encontraron productos');
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'No se encontraron ventas',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }
     });
   }

@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { Supplier } from 'src/app/models/supplier_model';
 import { catchError, tap } from 'rxjs/operators';
 import { HandleHttpErrorService } from 'src/app/@base/handle-http-error.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SupplierService {
 
-  baseUrl: string = 'https://localhost:5001/';
+  baseUrl: string = environment.baseUrl;
   constructor(private http: HttpClient,
               private handleErrorService: HandleHttpErrorService) {
   }

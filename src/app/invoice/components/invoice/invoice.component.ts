@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 import { ClientService } from 'src/app/core/client/client.service';
 import { InvoiceService } from 'src/app/core/invoice/invoice.service';
 import { ProductService } from 'src/app/core/product/product.service';
@@ -23,14 +25,14 @@ export class InvoiceComponent implements OnInit {
   formGroupClient: FormGroup;
   formGroupInvoice: FormGroup;
   searchText: string;
-  stock: number;
-  invoiceAux: Invoice;
+
 
   constructor(
     private invoiceService: InvoiceService,
     private productService: ProductService,
     private clientService: ClientService,
     private formBuilder: FormBuilder,
+    private dialog: MatDialog
   ) { this.buildForm(); }
 
   ngOnInit() {
@@ -99,7 +101,11 @@ export class InvoiceComponent implements OnInit {
     this.clientService.getClient(idClient).subscribe( c => {
       if (c.idClient !== undefined ) {
 
-        alert("Cliente Encontrado...!");
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Cliente encontrado...!',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
 
         this.client = c;
         this.invoice.idClient = this.client.idClient;
@@ -108,7 +114,11 @@ export class InvoiceComponent implements OnInit {
 
       } else {
 
-        alert("Cliente NO Encontrado...!");
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Cliente NO encontrado',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }
     });
   }
@@ -134,7 +144,11 @@ export class InvoiceComponent implements OnInit {
       this.invoice.calculateTotal();
 
     } else {
-     alert("Debe agregar un CLIENTE a la factura...!")
+      this.dialog.open(AlertDialogComponent, {
+        width: '250px',
+        data: { title: 'Resultado Operacion!', message: 'Debe agragar un CLIENTE a la factura...!',
+                  nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+      });
     }
 
   }
@@ -145,8 +159,7 @@ export class InvoiceComponent implements OnInit {
   }
 
   addInvoice(): void {
-    // this.invoiceAux = this.invoice;
-    // this.invoiceAux.invoiceDetails[0].product = new Product();
+
 
     console.log(this.invoice);
     console.log(this.invoice.invoiceDetails.length !== 0);
@@ -154,14 +167,22 @@ export class InvoiceComponent implements OnInit {
 
       this.invoiceService.post(this.invoice).subscribe(i => {
         if ( i != null ) {
-          alert("Factura Guardada...! :)");
+          this.dialog.open(AlertDialogComponent, {
+            width: '250px',
+            data: { title: 'Resultado Operacion!', message: 'Factura guardada..!',
+                      nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+          });
           this.invoice = new Invoice();
           this.cleanForm();
         }
       });
 
     } else {
-     alert("Debe agragar productos a la factura...!");
+      this.dialog.open(AlertDialogComponent, {
+        width: '250px',
+        data: { title: 'Resultado Operacion!', message: 'Debe agragar productos a la factura',
+                  nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+      });
     }
   }
 }

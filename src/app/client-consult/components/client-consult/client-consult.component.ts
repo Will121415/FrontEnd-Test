@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 import { ClientService } from 'src/app/core/client/client.service';
 import { Client } from 'src/app/models/client_model';
 
@@ -25,7 +27,10 @@ export class ClientConsultComponent implements AfterViewInit  {
   ngAfterViewInit() {
     this.getProduct();
   }
-  constructor(private clientService: ClientService) {
+  constructor(
+    private clientService: ClientService,
+    private dialog: MatDialog
+    ) {
   }
 
   getProduct() {
@@ -37,7 +42,11 @@ export class ClientConsultComponent implements AfterViewInit  {
         this.dataSource =  new MatTableDataSource<Client>(this.clients);
         this.dataSource.paginator = this.paginator;
       }else {
-        alert('No se encontraron productos');
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'No se encontraron clientes',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }
     });
   }

@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -40,7 +41,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   exports: [
     MatButtonModule,
@@ -59,7 +61,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

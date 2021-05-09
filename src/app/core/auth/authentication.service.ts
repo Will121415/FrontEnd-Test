@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { HandleHttpErrorService } from 'src/app/@base/handle-http-error.service';
 import { User } from 'src/app/models/user_model';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  baseUrl: string ='https://localhost:5001/';
+  baseUrl: string = environment.baseUrl;
 
   constructor(
     private http: HttpClient,

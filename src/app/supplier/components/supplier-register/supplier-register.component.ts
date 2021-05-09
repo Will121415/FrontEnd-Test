@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 import { SupplierService } from 'src/app/core/supplier/supplier.service';
 import { Supplier } from 'src/app/models/supplier_model';
 
@@ -15,7 +17,8 @@ export class SupplierRegisterComponent implements OnInit {
 
   constructor(
     public supplierService: SupplierService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialog: MatDialog
   )
   {this.buldForm();}
 
@@ -46,9 +49,17 @@ export class SupplierRegisterComponent implements OnInit {
       if(c != null )
       {
         this.supplierForm.reset();
-       alert("Proveedor Guardado...!");
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Proveedor Guardado...!',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }else {
-        alert("Error al guardar el proveedor");
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Error: no se pudo guardar el proveedor',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }
     });
 

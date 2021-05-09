@@ -5,12 +5,9 @@
         <span>
           <a mat-button [routerLink]="['/home']" routerLinkActive="active">Home</a>
         </span>
-        <span *ngIf="(user$ | async ) == null">
-          <a mat-button [routerLink]="['/product-consult']" routerLinkActive="active">Productos</a>
-        </span>
 
         <span *ngIf="(user$ | async ) as user">
-
+          <a *ngIf="user.role == 'Interested'" mat-button [routerLink]="['/product-consult']" routerLinkActive="active">Productos</a>
           <a  *ngIf="user.role == 'AvaluoLeader'" mat-button  class="act" [matMenuTriggerFor]="product">Productos </a>
           <mat-menu #product="matMenu">
             <a class="text-menu" mat-menu-item [routerLink]="['/product-register']">registrar poductos</a>

@@ -17,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProductConsultModule } from './product-consult/product-consult.module';
 import { ClientConsultModule } from './client-consult/client-consult.module';
 import { SalesModule } from './sales/sales.module';
-import { InvoicePipe } from './pipes/invoice.pipe';
+import { AlertDialogModule } from './@base/alert-dialog/alert-dialog.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { InvoicePipe } from './pipes/invoice.pipe';
     ProductConsultModule,
     ClientConsultModule,
     SalesModule,
+    AlertDialogModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent]

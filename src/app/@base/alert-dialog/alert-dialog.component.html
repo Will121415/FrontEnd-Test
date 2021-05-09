@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<div mat-dialog-content>
+  <span [innerHTML]="data.message"></span>
+
+</div>
+<div mat-dialog-actions>
+    <button  mat-flat-button color="warn" (click) ="onClickNO()">{{ data.nameBtnOne }}</button>
+    <button *ngIf="data.btnEnable" mat-flat-button color="primary" [mat-dialog-close] = "true">{{ data.nameBtnTwo }}</button>
+</div>

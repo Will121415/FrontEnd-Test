@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 import { ClientService } from 'src/app/core/client/client.service';
 import { Client } from 'src/app/models/client_model';
 
@@ -15,7 +17,8 @@ export class ClientComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private dialog: MatDialog
     ) { this.buildForm();}
 
   ngOnInit(): void {
@@ -44,11 +47,19 @@ export class ClientComponent implements OnInit {
     this.clientService.post(this.client).subscribe(c => {
         if (c != null )
         {
-          alert("Cliente Guardado...!");
+          this.dialog.open(AlertDialogComponent, {
+            width: '250px',
+            data: { title: 'Resultado Operacion!', message: 'El cliente ha sido guardado...!',
+                      nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+          });
           console.log(c);
           this.clientForm.reset();
         }else {
-          alert("Error al guardar el cliente");
+          this.dialog.open(AlertDialogComponent, {
+            width: '250px',
+            data: { title: 'Resultado Operacion!', message: 'Error: no se pudo guardar el cliente',
+                      nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+          });
         }
     });
 

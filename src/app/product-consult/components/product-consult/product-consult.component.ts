@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 import { ProductService } from 'src/app/core/product/product.service';
 import { Product } from 'src/app/models/product_model';
 
@@ -24,7 +26,10 @@ export class ProductConsultComponent implements AfterViewInit  {
   ngAfterViewInit() {
     this.getProduct();
   }
-  constructor(private productService: ProductService) {
+  constructor(
+    private productService: ProductService,
+    private dialog: MatDialog
+    ) {
   }
 
   getProduct() {
@@ -36,7 +41,11 @@ export class ProductConsultComponent implements AfterViewInit  {
         this.dataSource =  new MatTableDataSource<Product>(this.products);
         this.dataSource.paginator = this.paginator;
       }else {
-        alert('No se encontraron productos');
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'No se encontro ningun producto',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }
     });
   }
@@ -46,9 +55,17 @@ export class ProductConsultComponent implements AfterViewInit  {
       if(p != null)
       {
         this.getProduct();
-        alert("Cambio de estado exitoso...!");
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Cambio de estado exitoso..!',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }else {
-        alert("Error al cambiar es estado del producto...!");
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Error: no se pudo cambiar el estado del producto',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }
     });
   }

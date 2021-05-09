@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 import { ProductService } from 'src/app/core/product/product.service';
 import { SupplierService } from 'src/app/core/supplier/supplier.service';
 import { Product } from 'src/app/models/product_model';
@@ -23,7 +25,8 @@ export class ProductRegisterComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private supplierService: SupplierService,
-    private productService: ProductService
+    private productService: ProductService,
+    public dialog: MatDialog
     ) {this.buldForm();}
 
   measures: string[]= ['Kg'];
@@ -46,11 +49,18 @@ export class ProductRegisterComponent implements OnInit{
     this.productService.post(this.product).subscribe(p => {
       if (p != null)
       {
-        alert("Producto guardado...!");
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Producto Creado..!',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
         this.buldForm();
       }else {
-        alert("Error al guardar el producto..!");
-
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Error: no se pudo guardar el producto',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }
     });
   }
