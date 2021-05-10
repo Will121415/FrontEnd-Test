@@ -16,7 +16,7 @@ export class SupplierRegisterComponent implements OnInit {
   supplierForm: FormGroup;
 
   constructor(
-    public supplierService: SupplierService,
+    private supplierService: SupplierService,
     private fb: FormBuilder,
     private dialog: MatDialog
   )

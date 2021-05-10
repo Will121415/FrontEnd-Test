@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HandleHttpErrorService } from 'src/app/@base/handle-http-error.service';
 import { User } from 'src/app/models/user_model';
-import { map } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class AuthenticationService {
 login(username, password) {
   return this.http.post<any>(`${this.baseUrl}api/login`, { username, password })
         .pipe(map(user => {
-            user.password = '*****';
+            // user.password = '*****';
           // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
@@ -36,9 +36,12 @@ login(username, password) {
         }));
 }
 
-logout() {
+  logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+
 }
-}
+
+

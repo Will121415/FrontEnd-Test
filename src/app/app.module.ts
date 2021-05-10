@@ -18,6 +18,7 @@ import { ProductConsultModule } from './product-consult/product-consult.module';
 import { ClientConsultModule } from './client-consult/client-consult.module';
 import { SalesModule } from './sales/sales.module';
 import { AlertDialogModule } from './@base/alert-dialog/alert-dialog.module';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AlertDialogModule } from './@base/alert-dialog/alert-dialog.module';
     ClientConsultModule,
     SalesModule,
     AlertDialogModule,
+    UsersModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent]
